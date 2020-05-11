@@ -108,4 +108,22 @@ void LEDControl (Arguments *in, Reply *out)   {
 
     }
 
+    if (on == 0 && (led == 1 || led == 3)){
+        for (int i = 0; i < 20; i++){
+            RPC::call("/myled1/write 0", outbuf);
+            wait(0.1);
+            RPC::call("/myled1/write 1", outbuf);
+            wait(0.1);
+            RPC::call("/myled3/write 0", outbuf);
+            wait(0.1);
+            RPC::call("/myled3/write 1", outbuf);
+            wait(0.1);
+        }
+        
+    }else{
+        RPC::call("/myled1/write 1", outbuf);
+        RPC::call("/myled2/write 1", outbuf);
+        RPC::call("/myled3/write 1", outbuf);
+    }
+
 }
